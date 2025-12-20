@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dice Roller</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Dice Roller</h1>
+        
+        <form method="POST">
+            <div class="mode-switch">
+                <label>
+                    <input type="checkbox" name="two_mode" {% if two_mode %}checked{% endif %} onchange="this.form.submit()">
+                    Two Dice Mode
+                </label>
+            </div>
+            
+            <div class="dice-frame">
+                <div class="dice-display">
+                    <img src="{{ url_for('static', filename=dice1_path) }}" alt="Dice 1">
+                </div>
+                {% if two_mode %}
+                <div class="dice-display">
+                    <img src="{{ url_for('static', filename=dice2_path) }}" alt="Dice 2">
+                </div>
+                {% endif %}
+            </div>
+            
+            <div class="total-display">
+                Total: <span>{{ total }}</span>
+            </div>
+            
+            <button type="submit" class="roll-button">Roll Dice</button>
+        </form>
+    </div>
+</body>
+</html>

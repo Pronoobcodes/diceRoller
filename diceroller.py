@@ -3,6 +3,7 @@ from tkinter import ttk
 from PIL import Image, ImageTk
 import random
 import sys
+import os
 
 class DarkDiceRoller:
     def __init__(self, root):
@@ -24,8 +25,14 @@ class DarkDiceRoller:
         self.adapt_layout()
 
     def load_dice_faces(self):
+        # Handle both exe (PyInstaller) and script execution
+        if hasattr(sys, '_MEIPASS'):
+            base_path = sys._MEIPASS
+        else:
+            base_path = os.path.dirname(os.path.abspath(__file__))
+        
         return {
-            i: ImageTk.PhotoImage(Image.open(f"dice_{i}.png").resize((80,80)))
+            i: ImageTk.PhotoImage(Image.open(os.path.join(base_path, f"images/dice_{i}.png")).resize((80,80)))
             for i in range(1,7)
         }
 
