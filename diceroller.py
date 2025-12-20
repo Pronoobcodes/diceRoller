@@ -1,6 +1,5 @@
 import tkinter as tk
 from tkinter import ttk
-from turtle import bgcolor
 from PIL import Image, ImageTk
 import random
 import sys
@@ -13,13 +12,13 @@ class DarkDiceRoller:
         self.dice_images = self.load_dice_faces()
         self.total = 0
 
-        self.root.configure(bg='black')
+        self.root.configure(background='black')
         self.style = ttk.Style()
         self.style.theme_use('alt')
         
-        self.style.configure('.', bg='black', fg='white')
-        self.style.configure('TButton', bg='#333', fg='white')
-        self.style.map('TButton', bg=[('active', '#444'), ('disabled', '#222')],fg=[('active', '#fff'), ('disabled', '#777')])
+        self.style.configure('.', background='black', foreground='white')
+        self.style.configure('TButton', background='#333', foreground='white')
+        self.style.map('TButton', background=[('active', '#444'), ('disabled', '#222')],foreground=[('active', '#fff'), ('disabled', '#777')])
         
         self.setup_ui()
         self.adapt_layout()
